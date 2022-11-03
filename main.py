@@ -22,7 +22,12 @@ def send_fact(message):
     s = str(message.text)
     a = s.split(" ")
     # print(a[1])
-    response = requests.get('https://restcountries.com/v3.1/name/'+a[1])
+    cname=''
+    for i in range(1,len(a)):
+        cname=cname+a[i]
+        if i!=len(a)-1:
+            cname=cname+" "
+    response = requests.get('https://restcountries.com/v3.1/name/'+cname)
     if (response.status_code == 200):  # Everything went okay, we have the data
         data = response.json()
         # print(data)
@@ -39,7 +44,7 @@ def send_fact(message):
         for i in lang:
             lng += lang[i]+', '
         ##############################################
-        txt_msg = 'Hello from '+a[1]+'!\nOfficial Name: '+data[0]['name']['official']+'\nCapital: ' + \
+        txt_msg = 'Hello from '+cname+'!\nOfficial Name: '+data[0]['name']['official']+'\nCapital: ' + \
             data[0]['capital'][0]+'\nCurrency: '+cur[f]['name'] + \
             '('+f+')\nSymbol: '+cur[f]['symbol']+'\nLanguages Spoken:'+lng
         bot.send_message(chat_id=message.chat.id, text=txt_msg)
