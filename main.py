@@ -2,7 +2,7 @@
 import telebot
 import requests
 import json
-bot = telebot.TeleBot('5653388312:AAEh7bBo_5M6pMU46sUNQinMQfGK-4570rA') #API_TOKEN
+bot = telebot.TeleBot('YOUR_API_KEY') #API_TOKEN
 
 
 @bot.message_handler(commands=['start']) #start command
